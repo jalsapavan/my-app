@@ -14,5 +14,21 @@ node{
           sh "${mvnHome}/bin/mvn sonar:sonar"
         }
     }
+    stage ('Jfrog Upload') { 
+  
+ rtUpload ( 
+ serverId: "jfrog1", 
+ spec: 
+ """{ 
+ "files": [ 
+ { 
+ "pattern": "**/*", 
+ "target": "libs-snapshot-local/" 
+ } 
+ ] 
+ }""" 
+ ) 
+    
+ }
 
 }
