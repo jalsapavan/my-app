@@ -19,7 +19,8 @@ node{
    stage('Run Container on AWS Server'){
      def dockerRun = 'docker run -p 8080:8080 -d --name my-app kpd19/my-app:2.0.0'
      sshagent(['dev-server']) {
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.89.148 ${dockerRun}"
+       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.89.148"
+       sh "${dockerRun}"
      }
    }
 }
